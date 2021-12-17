@@ -10,6 +10,8 @@ public class BGMover : MonoBehaviour
     private float cameraY;
     private float boundHeight;
 
+    public GameObject[] enemies;
+    public GameObject[] spawnPositions;
     void Awake()
     {
         sideBounds = GameObject.FindGameObjectsWithTag("SideBound");
@@ -49,6 +51,28 @@ public class BGMover : MonoBehaviour
             Vector3 temp = transform.position;
             temp.y = highestBoundsY + boundHeight;
             transform.position = temp;
+
+            //Spawn enemies
+            SpawnEnemies();
+        }
+    }
+
+    void SpawnEnemies()
+    {
+        //Frequency of spawning enemies
+        if (Random.Range(0,10) > 0)
+        {
+            int randomEnemyIndex = Random.Range(0, enemies.Length);
+
+            if (randomEnemyIndex == 0)
+            {
+                //Flag enemy - needs to be spawned in the middle
+                Instantiate(enemies[randomEnemyIndex], new Vector3(0, transform.position.y, 3), Quaternion.identity);
+            }
+            else
+            {
+
+            }
         }
     }
 }
