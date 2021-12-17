@@ -9,6 +9,13 @@ public class Player : MonoBehaviour
     private bool onLeft, onRight;
     private bool jumped;
 
+    [SerializeField]
+    AudioSource audioKill, audioJump;
+
+    [SerializeField]
+    private AudioClip deadSound;
+
+    private bool isAlive = true;
     void Awake()
     {
         GameObject.Find("JumpButton").GetComponent<Button>().onClick.AddListener(Jump);
@@ -21,19 +28,36 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!jumped)
+        if (isAlive)
         {
-            if (onRight)
+            if (!jumped)
             {
-                anim.Play("RunRight");
+                if (onRight)
+                {
+                    anim.Play("RunRight");
+                }
+                else
+                {
+                    anim.Play("RunLeft");
+                }
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.Play("RunLeft");
+                if (onRight)
+                    anim.Play("JumpLeft");
+                else
+                    anim.Play("JumpRight");
+
+                jumped = true;
+                audioJump.Play();
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    public void Jump()
+    {
+        if (isAlive)
         {
             if (onRight)
                 anim.Play("JumpLeft");
@@ -41,17 +65,9 @@ public class Player : MonoBehaviour
                 anim.Play("JumpRight");
 
             jumped = true;
+            audioJump.Play();
+
         }
-    }
-
-    public void Jump()
-    {
-        if (onRight)
-            anim.Play("JumpLeft");
-        else
-            anim.Play("JumpRight");
-
-        jumped = true;
     }
 
     void OnLeft()
@@ -67,4 +83,51 @@ public class Player : MonoBehaviour
         onRight = true;
         jumped = false;
     }
+
+    void PlayerDied()
+    {
+        audioKill.clip = deadSound;
+        audioKill.Play();
+
+        isAlive = false;
+
+        if (transform.position.x > 0)
+        {
+            anim.Play("PlayerDiedRight");
+        }
+        else
+        {
+            anim.Play("PlayerDiedLeft");
+        }
+
+        //GameplayController.instance.Gameover();
+
+        Time.timeScale = 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D target)
+    {
+        if (jumped)
+        {
+            if (target.tag == "Enemy")
+            {
+                target.gameObject.SetActive(false);
+                audioKill.Play();
+            }
+        }
+        else
+        {
+            if (target.tag == "Enemy")
+            {
+                PlayerDied();
+            }
+        }
+
+        if (target.tag == "EnemyTree")
+        {
+            PlayerDied();
+        }
+    }
+
+    
 }
