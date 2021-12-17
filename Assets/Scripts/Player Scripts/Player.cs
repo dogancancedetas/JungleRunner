@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
             anim.Play("PlayerDiedLeft");
         }
 
-        //GameplayController.instance.Gameover();
+        GameplayController.instance.GameOver();
 
         Time.timeScale = 0;
     }
