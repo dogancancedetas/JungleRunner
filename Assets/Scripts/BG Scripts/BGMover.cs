@@ -71,7 +71,23 @@ public class BGMover : MonoBehaviour
             }
             else
             {
+                GameObject enemyObj = Instantiate(enemies[randomEnemyIndex]);
+                Vector3 enemyScale = enemyObj.transform.localScale;
 
+                if (Random.Range(0,2) > 0)
+                {
+                    //Spawn right
+                    enemyObj.transform.position = spawnPositions[0].transform.position;
+                    enemyScale.x = -Mathf.Abs(enemyScale.x);
+                }
+                else
+                {
+                    //Spawn left
+                    enemyObj.transform.position = spawnPositions[1].transform.position;
+                    enemyScale.x = Mathf.Abs(enemyScale.x);
+                }
+
+                enemyObj.transform.localScale = enemyScale;
             }
         }
     }
