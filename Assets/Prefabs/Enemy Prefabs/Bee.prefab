@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9146856598823788307}
   - component: {fileID: 7292200392293745027}
   - component: {fileID: 171527573912623347}
-  - component: {fileID: 8733099310798390748}
+  - component: {fileID: 5847827127386356403}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Enemy
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8733099310798390748
+--- !u!114 &5847827127386356403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2621883043528622976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d75b737c7f84e45bc780f2974d1c40, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e470257a102f5d43b7785a1f6860995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
