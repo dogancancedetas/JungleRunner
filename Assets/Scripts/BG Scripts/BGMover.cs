@@ -43,9 +43,7 @@ public class BGMover : MonoBehaviour
             for (int i = 1; i < sideBounds.Length; i++)
             {
                 if (highestBoundsY < sideBounds[i].transform.position.y)
-                {
                     highestBoundsY = sideBounds[i].transform.position.y;
-                }
             }
 
             Vector3 temp = transform.position;

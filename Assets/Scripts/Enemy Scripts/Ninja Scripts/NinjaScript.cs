@@ -45,8 +45,6 @@ public class NinjaScript : MonoBehaviour
     void Deactivate()
     {
         if (transform.position.y < cameraY)
-        {
             gameObject.SetActive(false);
-        }
     }
 }

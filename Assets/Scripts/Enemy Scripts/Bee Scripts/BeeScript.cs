@@ -16,13 +16,9 @@ public class BeeScript : MonoBehaviour
     void Start()
     {
         if (transform.position.x > 0)
-        {
             attackRight = false;
-        }
         else
-        {
             attackRight = true;
-        }
     }
 
     // Update is called once per frame
@@ -45,7 +41,6 @@ public class BeeScript : MonoBehaviour
             if (!attackStarted)
             {
                 attackStarted = true;
-
                 StartCoroutine(AttackPlayer());
             }
         }
@@ -53,13 +48,9 @@ public class BeeScript : MonoBehaviour
         if (moveAndAttack)
         {
             if (!attackRight)
-            {
                 transform.position -= Vector3.right * attackSpeed * Time.deltaTime;
-            }
             else
-            {
                 transform.position += Vector3.right * attackSpeed * Time.deltaTime;
-            }
         }
     }
     void Deactivate()

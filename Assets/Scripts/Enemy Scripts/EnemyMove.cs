@@ -30,8 +30,6 @@ public class EnemyMove : MonoBehaviour
     void Deactivate()
     {
         if (transform.position.y < cameraY)
-        {
             Destroy(gameObject);
-        }
     }
 }
